@@ -75,7 +75,7 @@ local tankingbuffs = {
 		198938, -- Earthen Shield Totem
 		207399, -- Ancestral Protection Totem
 	},
-	"WARLOCK"] = {
+	["WARLOCK"] = {
 		108416, -- Dark Pact
 		104773, -- Unending Resolve
 	},
