@@ -18,8 +18,6 @@ local tankingbuffs = {
 	["DRUID"] = {
 		22812,  -- Barkskin
 		102342, -- Ironbark
-		105737, -- Mass Regeneration (tier bonus)
-		132402, -- Savage Defense
 		61336,  -- Survival Instincts
 	},
 	["HUNTER"] = {
