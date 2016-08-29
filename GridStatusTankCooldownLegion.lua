@@ -8,7 +8,6 @@ local tankingbuffs = {
 	["DEATHKNIGHT"] = {
 		48707, -- Anti-Magic Shell
 		77535, -- Blood Shield
-		49222, -- Bone Shield
 		49028, -- Dancing Rune Weapon
 		48792, -- Icebound Fortitude
 		55233, -- Vampiric Blood
@@ -70,7 +69,6 @@ local tankingbuffs = {
 	},
 	["SHAMAN"] = {
 		108271, -- Astral Shift
-		30823,  -- Shamanistic Rage
 		98008,  -- Spirit Link Totem
 		198938, -- Earthen Shield Totem
 		207399, -- Ancestral Protection Totem
