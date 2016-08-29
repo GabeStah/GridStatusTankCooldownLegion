@@ -1,6 +1,6 @@
-------------------------------------------------------------------------------
--- GridStatusTankCooldown by Slaren
-------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+-- GridStatusTankCooldown by Slaren (Original), Kainhighwind and GabeStah (Legion)
+----------------------------------------------------------------------------------
 GridStatusTankCooldown = Grid:GetModule("GridStatus"):NewModule("GridStatusTankCooldown")
 GridStatusTankCooldown.menuName = "Tanking cooldowns"
 
@@ -19,7 +19,7 @@ local tankingbuffs = {
 		198589, -- Blur
 		196718, -- Darkness
 		196555, -- Netherwalk
-	},	
+	},
 	["DRUID"] = {
 		22812,  -- Barkskin
 		102342, -- Ironbark
