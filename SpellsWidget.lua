@@ -14,7 +14,7 @@ do
 
 		return false
 	end
-	
+
 	local function GetSpellClass(self, spellid)
 		for class, buffs in pairs(self.spells) do
 			for _, s in ipairs(buffs) do
@@ -23,7 +23,7 @@ do
 				end
 			end
 		end
-		
+
 		return nil
 	end
 
@@ -36,26 +36,26 @@ do
 
 		self.spell_containers[i].spellid = spellid
 		self.spell_containers[i].label:SetText(string.format(" |T%s:20|t |cFF%02x%02x%02x%s|r", sicon, RAID_CLASS_COLORS[class].r * 0xff, RAID_CLASS_COLORS[class].g * 0xff, RAID_CLASS_COLORS[class].b * 0xff, sname))
-		
+
 		if active then
 			self.spell_containers[i].check.checktex:Show()
-			self.spell_containers[i].upbtn:Enable()			
+			self.spell_containers[i].upbtn:Enable()
 			self.spell_containers[i].downbtn:Enable()
 		else
 			self.spell_containers[i].check.checktex:Hide()
-			self.spell_containers[i].upbtn:Disable()			
+			self.spell_containers[i].upbtn:Disable()
 			self.spell_containers[i].downbtn:Disable()
 		end
 	end
-	
+
 	local function UpdateSpells(self)
 		local i = 1
-		
+
 		for _, spellid in ipairs(self.active_spellids) do
 			SetContainerSpell(self, i, spellid, GetSpellClass(self, spellid), true)
 			i = i + 1
 		end
-		
+
 		for class, buffs in pairs(self.spells) do
 			for _, spellid in pairs(buffs) do
 				if not GetSpellPriority(self, spellid) then
@@ -65,7 +65,7 @@ do
 			end
 		end
 	end
-	
+
 	local function CheckBox_OnClick(frame)
 		local self = frame.obj.obj
 		local spellid = frame.obj.spellid
@@ -84,15 +84,15 @@ do
 
 			table.insert(self.active_spellids, pos, spellid)
 		end
-		
+
 		UpdateSpells(self)
-		GridStatusTankCooldown:UpdateAllUnits()
+		GridStatusTankCooldownLegion:UpdateAllUnits()
 	end
-	
+
 	local function UpButton_Click(frame)
 		local self = frame.obj.obj
 		local i = GetSpellPriority(self, frame.obj.spellid)
-		
+
 		if i and i > 1 then
 			if IsLeftShiftKeyDown() then
 				local tmp = self.active_spellids[i]
@@ -105,14 +105,14 @@ do
 			end
 
 			UpdateSpells(self)
-			GridStatusTankCooldown:UpdateAllUnits()
+			GridStatusTankCooldownLegion:UpdateAllUnits()
 		end
 	end
 
 	local function DownButton_Click(frame)
 		local self = frame.obj.obj
 		local i = GetSpellPriority(self, frame.obj.spellid)
-		
+
 		if i and i < #self.active_spellids then
 			if IsLeftShiftKeyDown() then
 				local tmp = self.active_spellids[i]
@@ -125,7 +125,7 @@ do
 			end
 
 			UpdateSpells(self)
-			GridStatusTankCooldown:UpdateAllUnits()
+			GridStatusTankCooldownLegion:UpdateAllUnits()
 		end
 	end
 
@@ -139,65 +139,65 @@ do
 		GameTooltip:SetSpellByID(spellfilters[frame.spellid] or frame.spellid, true, true)
 		GameTooltip:Show()
 	end
-				
+
 	local function LabelFrame_OnLeave(frame)
 		GameTooltip:Hide()
 	end
-	
+
 	local function LabelFrame_OnMouseUp(frame)
 		if IsModifiedClick("CHATLINK") then
 			ChatEdit_InsertLink(GetSpellLink(frame.spellid))
 		end
 	end
-		
+
 	local function OnAcquire(self)
 		UpdateSpells(self)
 	end
-	
+
 	-- These are required by AceConfigDialog
 	local function SetLabel(self, label)
-	end	
-	
+	end
+
 	local function SetText(self, text)
 	end
-	
+
 	local function SetDisabled(self, disabled)
 	end
-	
+
 	local function Constructor()
 		local widget = {
 			type = widgetType,
-			
+
 			OnAcquire = OnAcquire,
 			SetLabel = SetLabel,
 			SetText = SetText,
 			SetDisabled = SetDisabled,
 		}
-	
+
 		-- Create spell containers
-		local spells = GridStatusTankCooldown.tankingbuffs
-		
+		local spells = GridStatusTankCooldownLegion.tankingbuffs
+
 		local spell_count = 0
 		for _, cspells in pairs(spells) do
 			spell_count = spell_count + #cspells
 		end
 
-		spell_containers = {}		
-		
+		spell_containers = {}
+
 		local frame = CreateFrame("Frame")
 		frame:SetWidth(200)
 		frame:SetHeight(spell_count * SPELL_HEIGHT)
 		frame.obj = self
-		
+
 		local spell_containers = { }
-		
+
 		for i = 1, spell_count do
 			-- checkbox
 			local check = CreateFrame("Button", nil, frame)
 			check:SetPoint("TOPLEFT", 0, (i - 1) * -SPELL_HEIGHT)
 			check:SetWidth(24)
 			check:SetHeight(SPELL_HEIGHT)
-			check:Show()			
+			check:Show()
 			check:SetScript("OnClick", CheckBox_OnClick)
 
 			local checkbg = check:CreateTexture(nil, "ARTWORK")
@@ -224,7 +224,7 @@ do
 			upbtn:SetDisabledTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Disabled")
 			upbtn:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight", "ADD")
 			upbtn:SetScript("OnClick", UpButton_Click)
-			
+
 			-- down button
 			local downbtn = CreateFrame("Button", nil, frame)
 			downbtn:SetPoint("TOPLEFT", upbtn, "TOPRIGHT")
@@ -243,19 +243,19 @@ do
 			label:SetHeight(SPELL_HEIGHT)
 			label:SetJustifyH("LEFT")
 			label:SetJustifyV("MIDDLE")
-			
+
 			-- label frame
 			local label_frame = CreateFrame("Frame", nil, frame)
 			label_frame:SetAllPoints(label)
 			label_frame:EnableMouse()
-			label_frame:SetScript("OnEnter", LabelFrame_OnEnter)				
+			label_frame:SetScript("OnEnter", LabelFrame_OnEnter)
 			label_frame:SetScript("OnLeave", LabelFrame_OnLeave)
 			label_frame:SetScript("OnMouseUp", LabelFrame_OnMouseUp)
 
 			check.obj = label_frame
 			upbtn.obj = label_frame
 			downbtn.obj = label_frame
-			
+
 			label_frame.obj = widget
 			label_frame.check = check
 			label_frame.label = label
@@ -268,11 +268,11 @@ do
 		widget.frame = frame
 		widget.spell_containers = spell_containers
 		widget.spells = spells
-		widget.active_spellids = GridStatusTankCooldown.db.profile.alert_tankcd.active_spellids
-		widget.inactive_spellids = GridStatusTankCooldown.db.profile.alert_tankcd.inactive_spellids
-		
+		widget.active_spellids = GridStatusTankCooldownLegion.db.profile.alert_tankcd.active_spellids
+		widget.inactive_spellids = GridStatusTankCooldownLegion.db.profile.alert_tankcd.inactive_spellids
+
 		AceGUI:RegisterAsWidget(widget)
-		
+
 		return widget
 	end
 
