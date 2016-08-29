@@ -18,58 +18,57 @@ local tankingbuffs = {
 	["DRUID"] = {
 		22812,  -- Barkskin
 		102342, -- Ironbark
-		105737, -- Mass Regeneration (tier bonus)
-		132402, -- Savage Defense
 		61336,  -- Survival Instincts
 	},
 	["HUNTER"] = {
-		19263,  -- Deterrence
-		63087,  -- Glyph of Raptor Strike
+		199483, -- Camouflage
+		186265, -- Aspect of Turtle
+		109304, -- Exhilaration
 	},
 	["MAGE"] = {
-		157913, -- Evanesce
 		11426,  -- Ice Barrier
 		45438,  -- Ice Block
 		113862, -- Greater Invisibility
+		66, 	-- Invisibility 
 	},
 	["MONK"] = {
-		122278, -- Dampen Harm
-		122783, -- Diffuse Magic
-		115308, -- Elusive Brew
 		115203, -- Fortifying Brew
-		115295, -- Guard
 		116849, -- Life Cocoon
 		115176, -- Zen Meditation
+		122470, -- Touch of Karma
 	},
 	["PALADIN"] = {
-		31850,  -- Ardent Defender
-		31821,  -- Devotion Aura
-		498,    -- Divine Protection
-		642,    -- Divine Shield
-		86659,  -- Guardian of Ancient Kings
-		1022,   -- Hand of Protection
-		114039, -- Hand of Purity
-		6940,   -- Hand of Sacrifice
-		20925,  -- Holy Shield
-		132403, -- Shield of the Righteous
+		31850,  --  Ardent Defender
+		31821,  --  Aura Mastery
+		498,    --  Divine Protection
+		642,    --  Divine Shield
+		86659,  --  Guardian of Ancient Kings
+		1022,   --  Hand of Protection
+		6940,   --  Blessing of Sacrifice
+		204018, --  Blessing of Spellwarding
+		209202, --  Eye of Tyr
+		160387, --  Shield of Vengeance
 	},
 	["PRIEST"] = {
 		47585,  -- Dispersion
 		47788,  -- Guardian Spirit
 		33206,  -- Pain Suppression
 		81782,  -- Power Word: Barrier
+		15286,  -- Vampiric Embrace
 	},
 	["ROGUE"] = {
-		31224,  -- Cloak of Shadows
-		5277,   -- Evasion
-		1966,   -- Feint
-		76577,  -- Smoke Bomb
+		31224,  --  Cloak of Shadows
+		5277,   --  Evasion
+		1966,   --  Feint
+		185311, -- Crimson Vial
+		199754, -- Riposte
 	},
 	["SHAMAN"] = {
 		108271, -- Astral Shift
 		30823,  -- Shamanistic Rage
 		98008,  -- Spirit Link Totem
-		114893, -- Stone Bulwark Totem
+		198938, -- Earthen Shield Totem	
+		207399, -- Ancestral Protection Totem
 	},
 	"WARLOCK"] = {
 		108416, -- Dark Pact
