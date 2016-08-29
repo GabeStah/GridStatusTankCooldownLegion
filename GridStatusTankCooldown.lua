@@ -7,14 +7,13 @@ GridStatusTankCooldown.menuName = "Tanking cooldowns"
 local tankingbuffs = {
 	["DEATHKNIGHT"] = {
 		48707, -- Anti-Magic Shell
-		50461, -- Anti-Magic Zone
-		42650, -- Army of the Dead
 		77535, -- Blood Shield		
 		49222, -- Bone Shield
 		49028, -- Dancing Rune Weapon
 		48792, -- Icebound Fortitude
 		55233, -- Vampiric Blood
-		105588, -- Vampiric Brood (tier bonus)
+		114556, -- Purgatory
+		194679, -- Rune Tap
 	},
 	["DRUID"] = {
 		22812,  -- Barkskin
