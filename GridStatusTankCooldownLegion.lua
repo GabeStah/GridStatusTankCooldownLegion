@@ -70,7 +70,7 @@ local tankingbuffs = {
 	["SHAMAN"] = {
 		108271, -- Astral Shift
 		98008,  -- Spirit Link Totem
-		198938, -- Earthen Shield Totem
+		198838, -- Earthen Shield Totem
 		207399, -- Ancestral Protection Totem
 	},
 	["WARLOCK"] = {
