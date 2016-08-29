@@ -7,7 +7,7 @@ GridStatusTankCooldown.menuName = "Tanking cooldowns"
 local tankingbuffs = {
 	["DEATHKNIGHT"] = {
 		48707, -- Anti-Magic Shell
-		77535, -- Blood Shield		
+		77535, -- Blood Shield
 		49222, -- Bone Shield
 		49028, -- Dancing Rune Weapon
 		48792, -- Icebound Fortitude
@@ -71,24 +71,21 @@ local tankingbuffs = {
 		98008,  -- Spirit Link Totem
 		114893, -- Stone Bulwark Totem
 	},
-	["WARLOCK"] = {
-		110913, -- Dark Bargain        
-		108359, -- Dark Regeneration
-		-- 91711,  -- Nether Ward
-		108416, -- Sacrificial Pact
-		-- 6229,   -- Shadow Ward
+	"WARLOCK"] = {
+		108416, -- Dark Pact
 		104773, -- Unending Resolve
 	},
 	["WARRIOR"] = {
+		97462,  -- Commanding Shout
 		118038, -- Die by the Sword
+		184364, -- Enraged Regeneration
+		190456, -- Ignore Pain
+		198304, -- Intercept
 		12975,  -- Last Stand
-		97463,  -- Rallying Cry
-		46947,  -- Safeguard
-		112048, -- Shield Barrier		
+		203526, -- Neltharion's Fury (Artifact)
 		2565,   -- Shield Block
-		105914, -- Shield Fortress (tier bonus)
 		871,    -- Shield Wall
-		114030, -- Vigilance
+		23920,  -- Spell Reflection
 	}
 }
 
@@ -164,7 +161,7 @@ local myoptions = {
 
 function GridStatusTankCooldown:OnInitialize()
 	self.super.OnInitialize(self)
-	
+
 	for class, buffs in pairs(tankingbuffs) do
 		for _, spellid in pairs(buffs) do
 			local sname = GetSpellInfo(spellid)
@@ -172,7 +169,7 @@ function GridStatusTankCooldown:OnInitialize()
 			spellnames[spellid] = sname or tostring(spellid)
 		end
 	end
-	
+
 	self:RegisterStatus("alert_tankcd", "Tanking cooldowns", myoptions, true)
 
 	settings = self.db.profile.alert_tankcd
@@ -181,7 +178,7 @@ function GridStatusTankCooldown:OnInitialize()
 	if settings.spellids then
 		settings.spellids = nil
 	end
-	
+
 	-- remove old spellids
 	for p, aspellid in ipairs(settings.active_spellids) do
 		local found = false
@@ -190,14 +187,14 @@ function GridStatusTankCooldown:OnInitialize()
 				if spellid == aspellid then
 					found = true
 					break
-				end				
+				end
 			end
 		end
-		
+
 		if not found then
 			table.remove(settings.active_spellids, p)
 		end
-		
+
 		-- remove duplicates
 		for i = #settings.active_spellids, p + 1, -1 do
 			if settings.active_spellids[i] == aspellid then
@@ -244,7 +241,7 @@ function GridStatusTankCooldown:ScanUnit(event, unitid, unitguid)
 
 	for _, spellid in ipairs(settings.active_spellids) do
 		local name, _, icon, count, _, duration, expirationTime, caster = UnitBuff(unitid, spellnames[spellid])
-		
+
 		-- Used to check for debuffs when Argent Defender was a debuff - it is not necessary anymore
 		--[[
 		if not name then
@@ -253,7 +250,7 @@ function GridStatusTankCooldown:ScanUnit(event, unitid, unitguid)
 		]]
 
 		if name then
-			local text 
+			local text
 			if settings.showtextas == "caster" then
 				if caster then
 					text = UnitName(caster)
@@ -262,7 +259,7 @@ function GridStatusTankCooldown:ScanUnit(event, unitid, unitguid)
 				text = name
 			end
 
-			self.core:SendStatusGained(unitguid, 
+			self.core:SendStatusGained(unitguid,
 						"alert_tankcd",
 						settings.priority,
 						(settings.range and 40),
