@@ -15,6 +15,11 @@ local tankingbuffs = {
 		114556, -- Purgatory
 		194679, -- Rune Tap
 	},
+	["DEMONHUNTER"] = {
+		198589, -- Blur
+		196718, -- Darkness
+		196555, -- Netherwalk
+	},	
 	["DRUID"] = {
 		22812,  -- Barkskin
 		102342, -- Ironbark
@@ -29,7 +34,7 @@ local tankingbuffs = {
 		11426,  -- Ice Barrier
 		45438,  -- Ice Block
 		113862, -- Greater Invisibility
-		66, 	-- Invisibility 
+		66, 	-- Invisibility
 	},
 	["MONK"] = {
 		115203, -- Fortifying Brew
@@ -67,7 +72,7 @@ local tankingbuffs = {
 		108271, -- Astral Shift
 		30823,  -- Shamanistic Rage
 		98008,  -- Spirit Link Totem
-		198938, -- Earthen Shield Totem	
+		198938, -- Earthen Shield Totem
 		207399, -- Ancestral Protection Totem
 	},
 	"WARLOCK"] = {
